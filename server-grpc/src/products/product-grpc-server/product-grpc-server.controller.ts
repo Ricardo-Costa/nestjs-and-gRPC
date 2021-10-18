@@ -19,4 +19,22 @@ export class ProductGrpcServerController {
         }
     }
 
+    @GrpcMethod('ProductService')
+    findAll(data) {
+        let responseData = [
+            {
+                id: 1,
+                name: 'ProductX',
+                price: 344.56
+            }
+        ]
+        // test
+        return { data: responseData }
+    }
+
+    @GrpcMethod('ProductService', 'Delete')
+    remove(data) {
+        return true;
+    }
+
 }
