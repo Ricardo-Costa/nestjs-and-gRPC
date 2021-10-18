@@ -1,5 +1,6 @@
+import { status } from '@grpc/grpc-js';
 import { Controller } from '@nestjs/common';
-import { GrpcMethod } from '@nestjs/microservices';
+import { GrpcMethod, RpcException } from '@nestjs/microservices';
 import { Metadata, ServerUnaryCall } from 'grpc';
 import { ProductDTO } from '../dto/product.dto';
 
@@ -34,7 +35,18 @@ export class ProductGrpcServerController {
 
     @GrpcMethod('ProductService', 'Delete')
     remove(data) {
-        return true;
+        try {
+
+            return true
+
+        } catch (e) {
+            // if (e instanceof EntityNotfoundError) {
+            //     throw new RpcException({
+            //         message: 'Product not found.'
+            //         code: status.NOT_FOUND
+            //     });
+            // }
+        }
     }
 
 }
