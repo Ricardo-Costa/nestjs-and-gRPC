@@ -9,7 +9,23 @@ services:
     tty: true
     volumes:
       - ./server-grpc:/home/node/app
+      - ./proto:/home/node/app/proto
     entrypoint: ["/bin/sh", "/home/node/app/.docker/entrypoint.sh"]
+    # ports:
+    #   - 3000:3000
+    #   - 50051:50051
+
+  client_grpc:
+    network_mode: "host"
+    image: node:14.18.0-alpine3.14
+    container_name: client_grpc
+    tty: true
+    volumes:
+      - ./client-grpc:/home/node/app
+      - ./proto:/home/node/app/proto
+    entrypoint: ["/bin/sh", "/home/node/app/.docker/entrypoint.sh"]
+    depends_on:
+      - server_grpc
     # ports:
     #   - 3000:3000
     #   - 50051:50051
