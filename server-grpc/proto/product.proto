@@ -3,7 +3,7 @@ syntax = "proto3";
 package product;
 
 service ProductService {
-    rpc Create() returns () {}
+    rpc Create(ProductRequest) returns (ProductResponse) {}
     //rpc Update() returns () {}
 }
 
